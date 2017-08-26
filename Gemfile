@@ -12,3 +12,18 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+
+
+group :test do
+
+  gem 'byebug'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'rspec_api_documentation'
+  gem 'shoulda'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'json_spec'
+  gem 'database_cleaner'
+  gem 'ffaker'
+end
