@@ -9,14 +9,15 @@ Gem::Specification.new do |s|
   s.version     = MultiuserDevise::VERSION
   s.authors     = ["Sunil Shrestha"]
   s.email       = ["sunil@iwa.fi"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of MultiuserDevise."
-  s.description = "TODO: Description of MultiuserDevise."
+  s.homepage    = "http://github.com"
+  s.summary     = " Summary of MultiuserDevise."
+  s.description = "Description of MultiuserDevise."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 5.1.3"
+  s.add_dependency "devise"
 
   s.add_development_dependency "sqlite3"
 end

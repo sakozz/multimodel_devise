@@ -1,3 +1,4 @@
+require 'devise'
 require "multiuser_devise/engine"
 
 module MultiuserDevise
