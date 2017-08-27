@@ -1,5 +1,13 @@
 module MultiuserDevise
   class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
+    # skip_before_action :verify_authenticity_token
+    protect_from_forgery with: :exception, unless: -> { request.format.json? }
+    respond_to "json"
+
+    protected
+
+    def use_http_authentication?
+      false
+    end
   end
 end

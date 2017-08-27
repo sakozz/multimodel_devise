@@ -3,8 +3,6 @@ MultiuserDevise::Engine.routes.draw do
               controllers: {
               	sessions:      'multiuser_devise/users/sessions',
               	passwords:     'multiuser_devise/users/passwords',
-              	registrations: 'multiuser_devise/users/registrations',
-              	confirmations: 'multiuser_devise/users/confirmations',
-              	:invitations => 'multiuser_devise/users/invitations'
+              	registrations: 'multiuser_devise/users/registrations'
               }, defaults: { format: :json }
 end
