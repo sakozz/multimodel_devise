@@ -1,12 +1,12 @@
 module MultiuserDevise
-  class User < ApplicationRecord
+  class Admin < ApplicationRecord
     include Concerns::TokenAuthenticatable
 
     # Include default devise modules. Others available are:
-    # :confirmable, :lockable, :timeoutable and :omniauthable
+      # :omniauthable
     devise :database_authenticatable, :registerable,
-           :recoverable, :rememberable, :trackable, :validatable
-
+           :recoverable, :rememberable, :trackable, :validatable,
+           :confirmable, :lockable, :timeoutable
     has_one :auth_token, as: :token_authenticable, dependent: :destroy,
             class_name: 'MultiuserDevise::AuthToken'
   end
