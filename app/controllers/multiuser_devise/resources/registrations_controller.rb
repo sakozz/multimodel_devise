@@ -5,13 +5,16 @@ class MultiuserDevise::Resources::RegistrationsController < Devise::Registration
   # before_filter :configure_account_update_params, only: [:update]
   # skip_before_action :verify_authenticity_token, only: [:create]
 
+  after_action :verify_authorized #enforces pundit for every action
+
   # POST /resource
   def create
-    @resoure = resource_class.new(sign_up_params)
-    if @resoure.save
-      render json: @resoure, serializer: MultiuserDevise::UserSerializer, status: :created
+    @resource = resource_class.new(sign_up_params)
+    authorize(@resource)
+    if @resource.save
+      render json: @resource.auth_token, serializer: MultiuserDevise::AuthTokenSerializer, status: :created
     else
-      render json: failure(@resoure, 422), status: :unprocessable_entity
+      render json: failure(@resource, 422), status: :unprocessable_entity
     end
   end
 

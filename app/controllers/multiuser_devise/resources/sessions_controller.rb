@@ -7,10 +7,9 @@ class MultiuserDevise::Resources::SessionsController < Devise::SessionsControlle
   # POST /resource/sign_in
   def create
     @resource = resource_class.where(email: session_params[:email]).first
-
     if @resource.present? && @resource.valid_password?(session_params[:password])
-        @resource.update_auth_token
-        render json: @resource, root: 'user',  serializer: MultiuserDevise::UserSerializer, status: :ok
+      @resource.update_auth_token
+      render json: @resource, root: 'user', serializer: MultiuserDevise::SessionSerializer, status: :ok
     else
       render json: authentication_error(401), status: :unauthorized, root: false
     end
@@ -21,22 +20,22 @@ class MultiuserDevise::Resources::SessionsController < Devise::SessionsControlle
   #   super
   # end
 
-protected
+  protected
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute
   # end
   def session_params
-    params.require(:user).permit(:email, :password )
+    params.permit(:email, :password)
   end
 
   def authentication_error(status)
-     MultiuserDevise::ErrorReport.generate( { authentication: [t(".auth_fail")] }, status )
+    MultiuserDevise::ErrorReport.generate({authentication: [t(".auth_fail")]}, status)
   end
 
   def deactivated_error(status)
-    MultiuserDevise::ErrorReport.generate( { authentication: [t(".deactivated")] }, status )
+    MultiuserDevise::ErrorReport.generate({authentication: [t(".deactivated")]}, status)
   end
 
 end

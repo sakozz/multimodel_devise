@@ -9,20 +9,26 @@ module MultiuserDevise::Concerns::TokenAuthenticatable
   end
 
   def ensure_authentication_token
-    if authentication_token.blank?
-      self.authentication_token = generate_authentication_token
-      self.auth_token_genenrated_at = DateTime.new
+    if auth_token.blank?
+      self.auth_token = ::MultiuserDevise::AuthToken.new(
+          authentication_token: generate_authentication_token,
+          token_generated_at: DateTime.new,
+          token_authenticable: self
+      )
     end
   end
 
   def generate_authentication_token
     loop do
       token = Devise.friendly_token
-      break token unless self.class.where(authentication_token: token).first
+      break token unless ::MultiuserDevise::AuthToken.where(authentication_token: token).first
     end
   end
 
   def update_auth_token
-    self.update_attributes(authentication_token: generate_authentication_token, auth_token_genenrated_at: DateTime.new)
+    self.auth_token.update_attributes(
+        authentication_token: generate_authentication_token,
+        token_generated_at: DateTime.new
+    )
   end
 end

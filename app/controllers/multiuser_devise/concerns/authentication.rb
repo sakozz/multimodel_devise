@@ -9,19 +9,21 @@ module MultiuserDevise::Concerns
     def authenticate_with_token!
       #Use authentication token and email from request header
       authenticate_or_request_with_http_token do |token, options|
-        options    = params[:user] if options.blank? && params[:user]
+        options = params[:user] if options.blank? && params[:user]
         #TODO: There could possibly be other means to identify your self as well.
         #TODO: In fact I consider using email here as unsafe too, so you shouldn't do that:
         #https://gist.github.com/josevalim/fb706b1e933ef01e4fb6#comment-1331298
-        email = options[:email]
+        id = options[:identifier]
+
         # resource = params[:role] == 'Admin' ? MultiuserDevise::AdminUser : MultiuserDevise::User
-        user       = email &&  params[:role] && resource_class.where(email: email).first
+        token_record = id && ::MultiuserDevise::AuthToken.find(id)
+        resource = token_record.token_authenticable
 
         # Notice how we use Devise.secure_compare to compare the token
         # in the database with the token given in the params, mitigating
         # timing attacks.
-        if user && Devise.secure_compare(user.authentication_token, token.split('"').last)
-          sign_in user, store: false
+        if resource && Devise.secure_compare(token_record.authentication_token, token.split('"').last)
+          sign_in(:user, resource, store: false)
         end
       end
     end
