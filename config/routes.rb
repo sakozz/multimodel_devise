@@ -13,4 +13,6 @@ MultiuserDevise::Engine.routes.draw do
                  passwords: 'multiuser_devise/users/passwords',
                  registrations: 'multiuser_devise/users/registrations',
              }, defaults: {format: :json}
+
+  resources :users , only: [:index, :update, :show], format: :json
 end
