@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount MultiuserDevise::Engine => "/multiuser_devise"
+  mount MultimodelDevise::Engine => "/multimodel_devise"
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    multiuser_devise (0.1.0)
+    multimodel_devise (0.1.0)
       active_model_serializers (~> 0.10.0)
       devise
       pundit
@@ -184,7 +184,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   ffaker
   json_spec
-  multiuser_devise!
+  multimodel_devise!
   rspec
   rspec-rails
   rspec_api_documentation

@@ -39,7 +39,7 @@ class ApplicationPolicy
   end
 
   def resource_is_admin?
-    resource.present? && resource.class.name =="MultiuserDevise::Admin"
+    resource.present? && resource.class.name =="MultimodelDevise::Admin"
   end
 
   class Scope
@@ -55,7 +55,7 @@ class ApplicationPolicy
     end
 
     def resource_is_admin?
-      @resource.present? && @resource.class.name =="MultiuserDevise::Admin"
+      @resource.present? && @resource.class.name =="MultimodelDevise::Admin"
     end
   end
 end

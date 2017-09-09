@@ -3,7 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "multiuser_devise"
+require "multimodel_devise"
 
 module Dummy
   class Application < Rails::Application

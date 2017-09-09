@@ -1,17 +1,17 @@
-MultiuserDevise::Engine.routes.draw do
-  devise_for :admins, class_name: "MultiuserDevise::Admin", module: :devise,
+MultimodelDevise::Engine.routes.draw do
+	devise_for :admins, class_name: "MultimodelDevise::Admin", module: :devise,
              controllers: {
-                 sessions: 'multiuser_devise/admins/sessions',
-                 passwords: 'multiuser_devise/admins/passwords',
-                 confirmations: 'multiuser_devise/admins/confirmations',
-                 registrations: 'multiuser_devise/admins/registrations'
+                 sessions: 'multimodel_devise/admins/sessions',
+                 passwords: 'multimodel_devise/admins/passwords',
+                 confirmations: 'multimodel_devise/admins/confirmations',
+                 registrations: 'multimodel_devise/admins/registrations'
              }, defaults: {format: :json}
 
-  devise_for :users, class_name: "MultiuserDevise::User", module: :devise,
+             devise_for :users, class_name: "MultimodelDevise::User", module: :devise,
              controllers: {
-                 sessions: 'multiuser_devise/users/sessions',
-                 passwords: 'multiuser_devise/users/passwords',
-                 registrations: 'multiuser_devise/users/registrations',
+                 sessions: 'multimodel_devise/users/sessions',
+                 passwords: 'multimodel_devise/users/passwords',
+                 registrations: 'multimodel_devise/users/registrations',
              }, defaults: {format: :json}
 
   resources :users , only: [:index, :update, :show], defaults: {format: :json}
