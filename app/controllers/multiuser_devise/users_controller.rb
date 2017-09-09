@@ -1,9 +1,10 @@
 class MultiuserDevise::UsersController < MultiuserDevise::ApplicationController
   include MultiuserDevise::Concerns::Authentication
+  after_action :verify_policy_scoped, :only => :index
 
   # GET /v1/users
   def index
-    @users = MultiuserDevise::User.all
+    @users = policy_scope(MultiuserDevise::User)
     render json: @users, each_serializer: MultiuserDevise::UserSerializer, root: 'users'
   end
 

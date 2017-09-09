@@ -22,9 +22,14 @@ module MultiuserDevise
 
     class Scope < Scope
       def resolve
-        scope
+        if resource_is_admin?
+          scope.all
+        else
+          raise Pundit::NotAuthorizedError
+        end
       end
     end
+
 
   end
 end

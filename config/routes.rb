@@ -14,5 +14,6 @@ MultiuserDevise::Engine.routes.draw do
                  registrations: 'multiuser_devise/users/registrations',
              }, defaults: {format: :json}
 
-  resources :users , only: [:index, :update, :show], format: :json
+  resources :users , only: [:index, :update, :show], defaults: {format: :json}
+  resources :admins , only: [:index, :update, :show], defaults: {format: :json}
 end

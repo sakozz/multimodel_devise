@@ -53,6 +53,10 @@ class ApplicationPolicy
     def resolve
       scope
     end
+
+    def resource_is_admin?
+      @resource.present? && @resource.class.name =="MultiuserDevise::Admin"
+    end
   end
 end
 
