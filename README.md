@@ -38,7 +38,13 @@ And then execute:
 $ bundle
 ```
 
+## Configurations
+By default, token is regenerated for every new signin/session and expires in 8 weeks. Update the following configs as per need.
 
+```
+MultimodelDevise::Engine.config.token_expires_in = 8.weeks
+MultimodelDevise::Engine.config.regenerate_token_every_session = true 
+```
 
 ## Contributing
 Contribution directions go here.
