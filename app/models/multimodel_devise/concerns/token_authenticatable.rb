@@ -12,7 +12,7 @@ module MultimodelDevise::Concerns::TokenAuthenticatable
     if auth_token.blank?
       self.auth_token = ::MultimodelDevise::AuthToken.new(
           authentication_token: generate_authentication_token,
-          token_generated_at: DateTime.new,
+          token_generated_at: DateTime.now,
           token_authenticable: self
       )
     end
@@ -28,7 +28,7 @@ module MultimodelDevise::Concerns::TokenAuthenticatable
   def update_auth_token
     self.auth_token.update_attributes(
         authentication_token: generate_authentication_token,
-        token_generated_at: DateTime.new
+        token_generated_at: DateTime.now
     )
   end
 end
