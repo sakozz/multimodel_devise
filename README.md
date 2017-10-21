@@ -38,6 +38,17 @@ And then execute:
 $ bundle
 ```
 
+## Usage
+Copy migrations from multimodel_devise to application
+```ruby
+rake multimodel_devise:install:migrations
+```
+
+Create default admin user
+```ruby
+rake multimodel_devise:create_admin
+```
+
 ## Configurations
 By default, token is regenerated for every new signin/session and expires in 8 weeks. Update the following configs as per need.
 
