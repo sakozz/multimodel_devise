@@ -1,0 +1,6 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+<% resource_name = @resource.class.name == 'MultimodelDevise::Admin' ? 'admin' : 'user' %>
+<p>
+  <%= link_to 'Confirm my account', Rails.configuration.confirmation_urls[resource_name.to_sym][:confirm_path]+'/'+resource_name.pluralize+'/confirmation/?confirmation_token='+@token  %></p>
