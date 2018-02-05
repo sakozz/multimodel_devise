@@ -1,6 +1,10 @@
 module MultimodelDevise::Concerns
   module Authentication
     extend ActiveSupport::Concern
+    #Allows authenticate_or_request_with_http_token method in Rails api-only app
+    # include ActionController::HttpAuthentication::Basic::ControllerMethods
+    include ActionController::HttpAuthentication::Token::ControllerMethods
+    
     included do
       before_action :authenticate_with_token!
     end
