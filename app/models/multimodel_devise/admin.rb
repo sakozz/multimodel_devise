@@ -1,6 +1,6 @@
 module MultimodelDevise
   class Admin < ApplicationRecord
-    include Concerns::TokenAuthenticatable
+    include ::MultimodelDevise::Concerns::TokenAuthenticatable
 
     # Include default devise modules. Others available are:
     # :omniauthable
